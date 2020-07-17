@@ -3,7 +3,9 @@ const moongose = require('mongoose');
 const keys = require('./config/keys');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
+const bodyParser = require('body-parser');
 require('./models/user');
+require('./models/gastos');
 require('./services/passport');
 const cors = require('cors');
 
@@ -18,11 +20,17 @@ app.use(
 app.use(cookieSession({ maxAge: 30 * 24 * 60 * 1000, keys: [keys.cookieKey] }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(bodyParser.json());
 
 require('./routes/authRoutes')(app);
+require('./routes/gastosRoutes')(app);
 moongose.connect(keys.mongoURI, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
+});
+
+app.get('/home', (req, res) => {
+	res.send('olar !!! você esta logado');
 });
 
 if (process.env.NODE_ENV === 'production') {
