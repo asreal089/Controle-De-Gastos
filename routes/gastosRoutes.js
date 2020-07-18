@@ -1,16 +1,22 @@
 const moongose = require('mongoose');
-
+const endOfMonth = require('date-fns/endOfMonth');
+const startOfMonth = require('date-fns/startOfMonth');
 const Gasto = moongose.model('gasto');
-const ObjectID = require('mongodb').ObjectID;
 
 module.exports = (app) => {
 	app.get('/api/gastos', (req, res) => {
-		Gasto.find({ _user: '5f11c24f5464c14e8e4c1ae4' }, function (
-			err,
-			registros
-		) {
-			res.send(registros);
-		});
+		Gasto.find(
+			{
+				_user: '5f11c24f5464c14e8e4c1ae4',
+				data: {
+					$gte: startOfMonth(new Date()),
+					$lte: endOfMonth(new Date()),
+				},
+			},
+			function (err, registros) {
+				res.send(registros);
+			}
+		);
 	});
 
 	app.post('/api/gastos', (req, res) => {
