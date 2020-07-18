@@ -19,6 +19,10 @@ module.exports = (app) => {
 		);
 	});
 
+	app.put('/api/gastos', (req, res) => {
+		const { tipo, descricao, valor } = req.body;
+	});
+
 	app.post('/api/gastos', (req, res) => {
 		const { tipo, descricao, valor } = req.body;
 		const user_id = '5f11c24f5464c14e8e4c1ae4';
