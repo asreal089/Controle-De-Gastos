@@ -1,4 +1,5 @@
 import '../assets/materialize/css/materialize.min.css';
+import '../assets/main.css';
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
