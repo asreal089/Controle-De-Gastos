@@ -15,3 +15,33 @@
 #Carousel-2 li {
 	background-color: blueviolet;
 }
+.defaultForm {
+	width: 80%;
+	max-width: 1120px;
+	height: 60vh;
+	margin: 0 auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.button {
+	width: 100%;
+	height: 60px;
+	background: blueviolet;
+	border: 0;
+	border-radius: 8px;
+	color: #fff;
+	font-weight: 700;
+	margin-top: 16px;
+	display: inline-block;
+	text-align: center;
+	text-decoration: none;
+	font-size: 18px;
+	line-height: 60px;
+	transition: filter 0.2s;
+}
+
+.button:hover {
+	filter: brightness(90%);
+}
