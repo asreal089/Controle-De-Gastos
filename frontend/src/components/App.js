@@ -5,6 +5,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import Header from './Header';
+import Footer from './Footer';
 import Home from './Home';
 import NovoGasto from './NovoGasto';
 import NovaReceita from './NovaReceita';
@@ -33,6 +34,7 @@ class App extends Component {
 							path="/registrar-receita"
 							component={NovaReceita}
 						/>
+						<Footer />
 					</div>
 				</BrowserRouter>
 			</div>

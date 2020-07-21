@@ -18,23 +18,23 @@ class Landing extends Component {
 		return (
 			<Carousel
 				carouselId="Carousel-2"
-				className="white-text center #ec407a pink lighten-1"
+				className=" center #ec407a white "
 				options={{
 					fullWidth: true,
 					indicators: true,
 				}}
 			>
 				<div className>
-					<h2>O seu Site de Viagens</h2>
-					<p>Faça seu login com google e escolha sua viagem</p>
+					<h2>Seu site de controle de Gasto</h2>
+					<p>gerencie orçamento de forma simples e fácil</p>
 				</div>
 				<div className>
-					<h2>O seu Site de Viagens</h2>
-					<p>Escolha e agende voos, hoteis e passeios</p>
+					<h2>Seu site de controle de Gasto</h2>
+					<p>Dashbord com graficos para fácil visualização.</p>
 				</div>
 				<div className>
-					<h2>O seu Site de Viagens</h2>
-					<p>Tudo num lugar só pra facilitar sua viagem</p>
+					<h2>Seu site de controle de Gasto</h2>
+					<p>Crie o hábito e melhore a sua financeira</p>
 				</div>
 			</Carousel>
 		);
