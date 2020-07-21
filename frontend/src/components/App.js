@@ -7,6 +7,7 @@ import * as actions from '../actions';
 import Header from './Header';
 import Home from './Home';
 import NovoGasto from './NovoGasto';
+import NovaReceita from './NovaReceita';
 import Lading from './Landing';
 
 class App extends Component {
@@ -20,6 +21,18 @@ class App extends Component {
 				<BrowserRouter>
 					<div>
 						<Header />
+						<Route exact={true} path="/" component={Lading} />
+						<Route exact={true} path="/home" component={Home} />
+						<Route
+							exact={true}
+							path="/registrar-gasto"
+							component={NovoGasto}
+						/>
+						<Route
+							exact={true}
+							path="/registrar-receita"
+							component={NovaReceita}
+						/>
 					</div>
 				</BrowserRouter>
 			</div>

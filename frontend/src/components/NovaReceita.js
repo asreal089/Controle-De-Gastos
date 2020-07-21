@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
-class NovoGasto extends Component {
+class NovaReceita extends Component {
 	render() {
-		return <h1>olar novo gasto</h1>;
+		return <h1>olar nova receita</h1>;
 	}
 }
 
-export default connect(null, actions)(NovoGasto);
+export default connect(null, actions)(NovaReceita);

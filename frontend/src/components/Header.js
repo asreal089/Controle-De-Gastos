@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { IoIosCart } from 'react-icons/io';
 
 class Header extends Component {
 	renderContent() {
@@ -19,12 +18,11 @@ class Header extends Component {
 				return (
 					<span>
 						<li>
-							<Link to={'/travels'}>Buscar Viagens</Link>
+							<Link to={'/registrar-gasto'}>Registrar Gasto</Link>
 						</li>
 						<li>
-							<Link to={'/Cart'}>
-								{''}
-								<IoIosCart size={22} color="#EEE" />
+							<Link to={'/registrar-receita'}>
+								Registrar Receita
 							</Link>
 						</li>
 						<li>
@@ -41,12 +39,12 @@ class Header extends Component {
 				<div className="nav-wrapper">
 					<Link
 						id="logo"
-						to={this.props.auth ? '/' : '/'}
-						href="/"
+						to={this.props.auth ? '/home' : '/'}
+						href="/home"
 						className="brand-logo"
 						style={{ width: '20%' }}
 					>
-						ITravel
+						CG
 					</Link>
 
 					<ul id="nav-mobile" className="right">
