@@ -40,7 +40,6 @@ class Header extends Component {
 					<Link
 						id="logo"
 						to={this.props.auth ? '/home' : '/'}
-						href="/home"
 						className="brand-logo"
 						style={{ width: '20%' }}
 					>
