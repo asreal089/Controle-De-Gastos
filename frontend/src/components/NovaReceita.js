@@ -8,7 +8,7 @@ class NovaReceita extends Component {
 		this.state = {
 			nome: '',
 			descricao: '',
-			valor: null,
+			valor: '',
 			isMensal: false,
 		};
 	}
@@ -19,8 +19,6 @@ class NovaReceita extends Component {
 		alert('olar');
 	};
 	myChangeHandler = (event) => {
-		console.log(event.target.name);
-		console.log(event.target.value);
 		let nam = event.target.name;
 		let val = event.target.value;
 		this.setState({ [nam]: val });
