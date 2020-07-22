@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
-class NovaReceita extends Component {
+class NovoRegistro extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -10,6 +10,7 @@ class NovaReceita extends Component {
 			descricao: '',
 			valor: '',
 			isMensal: false,
+			isRenda: false,
 		};
 	}
 
@@ -24,9 +25,15 @@ class NovaReceita extends Component {
 		this.setState({ [nam]: val });
 	};
 
-	toggleChange = (event) => {
+	toggleChangeMensal = (event) => {
 		this.setState({
 			isMensal: !this.state.isMensal,
+		});
+	};
+
+	toggleChangeRenda = (event) => {
+		this.setState({
+			isRenda: !this.state.isRenda,
 		});
 	};
 
@@ -61,20 +68,38 @@ class NovaReceita extends Component {
 						value={this.state.valor}
 						onChange={this.myChangeHandler}
 					/>
-					<div className="switch">
-						É mensal:
-						<br />
+					<div className="container">
 						<div className="switch">
-							<label>
-								Não
-								<input
-									name="isMensal"
-									type="checkbox"
-									onChange={this.toggleChange}
-								/>
-								<span className="lever"></span>
-								Sim
-							</label>
+							É mensal:
+							<br />
+							<div className="switch">
+								<label>
+									Não
+									<input
+										name="isMensal"
+										type="checkbox"
+										onChange={this.toggleChangeMensal}
+									/>
+									<span className="lever"></span>
+									Sim
+								</label>
+							</div>
+						</div>
+						<div className="switch">
+							É Renda:
+							<br />
+							<div className="switch">
+								<label>
+									Não
+									<input
+										name="isRenda"
+										type="checkbox"
+										onChange={this.toggleChangeRenda}
+									/>
+									<span className="lever"></span>
+									Sim
+								</label>
+							</div>
 						</div>
 					</div>
 					<button className="button" type="submit">
@@ -90,4 +115,4 @@ function mapStateToProps({ auth }) {
 	return { auth };
 }
 
-export default connect(mapStateToProps, actions)(NovaReceita);
+export default connect(mapStateToProps, actions)(NovoRegistro);

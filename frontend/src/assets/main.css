@@ -25,6 +25,11 @@
 	justify-content: center;
 }
 
+.defaultForm .container {
+	display: flex;
+	float: left;
+}
+
 .button {
 	width: 100%;
 	height: 60px;

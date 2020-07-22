@@ -7,8 +7,7 @@ import * as actions from '../actions';
 import Header from './Header';
 import Footer from './Footer';
 import Home from './Home';
-import NovoGasto from './NovoGasto';
-import NovaReceita from './NovaReceita';
+import NovoRegistro from './NovoRegistro';
 import Lading from './Landing';
 
 class App extends Component {
@@ -26,13 +25,8 @@ class App extends Component {
 						<Route exact={true} path="/home" component={Home} />
 						<Route
 							exact={true}
-							path="/registrar-gasto"
-							component={NovoGasto}
-						/>
-						<Route
-							exact={true}
-							path="/registrar-receita"
-							component={NovaReceita}
+							path="/registro"
+							component={NovoRegistro}
 						/>
 						<Footer />
 					</div>

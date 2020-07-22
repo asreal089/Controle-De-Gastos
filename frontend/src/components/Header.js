@@ -18,12 +18,7 @@ class Header extends Component {
 				return (
 					<span>
 						<li>
-							<Link to={'/registrar-gasto'}>Registrar Gasto</Link>
-						</li>
-						<li>
-							<Link to={'/registrar-receita'}>
-								Registrar Receita
-							</Link>
+							<Link to={'/registro'}>Novo Registro</Link>
 						</li>
 						<li>
 							<a href="/auth/logout">Logout</a>

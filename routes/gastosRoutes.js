@@ -12,15 +12,25 @@ module.exports = (app) => {
 					$gte: startOfMonth(new Date()),
 					$lte: endOfMonth(new Date()),
 				},
+				isRenda: false,
 			},
 			function (err, registros) {
+				console.log(registros);
 				res.send(registros);
 			}
 		);
 	});
 
 	app.put('/api/gastos', (req, res) => {
-		const { tipo, descricao, valor } = req.body;
+		const {
+			tipo,
+			descricao,
+			valor,
+			data,
+			dataLancamento,
+			isMensal,
+			isRenda,
+		} = req.body;
 	});
 
 	app.post('/api/gastos', (req, res) => {
@@ -30,7 +40,10 @@ module.exports = (app) => {
 			tipo,
 			descricao,
 			valor,
-			data: Date.now(),
+			data,
+			dataLancmento: Date.now(),
+			isGasto,
+			isRenda,
 			_user: user_id,
 		}).save();
 		return res.json({ gasto });
