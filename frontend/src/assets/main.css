@@ -28,6 +28,12 @@
 .defaultForm .container {
 	display: flex;
 	float: left;
+	padding-right: 5px;
+}
+.defaultForm select {
+	display: flex;
+	border: none;
+	border-radius: 2px;
 }
 .switch {
 	width: 20%;
@@ -35,6 +41,7 @@
 }
 .dataInput {
 	float: right;
+	padding-right: 5px;
 }
 
 .button {

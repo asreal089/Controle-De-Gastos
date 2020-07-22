@@ -7,8 +7,8 @@ class NovoRegistro extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			tipo: '',
 			nome: '',
-			descricao: '',
 			valor: '',
 			dataLancamento: '',
 			isMensal: false,
@@ -55,40 +55,17 @@ class NovoRegistro extends Component {
 		return (
 			<div className="defaultForm">
 				<form onSubmit={this.mySubmitHandler}>
-					<input
-						placeholder="Nome"
-						type="text"
-						value={this.state.nome}
-						name="nome"
-						onChange={this.myChangeHandler}
-					/>
-					<input
-						type="text"
-						name="descricao"
-						placeholder="Descrição"
-						value={this.state.descricao}
-						onChange={this.myChangeHandler}
-					/>
-					<input
-						name="valor"
-						type="number"
-						placeholder="Valor"
-						value={this.state.valor}
-						onChange={this.myChangeHandler}
-					/>
 					<div className="container">
 						<div className="switch">
 							É mensal:
 							<br />
 							<label>
-								Não
 								<input
 									name="isMensal"
 									type="checkbox"
 									onChange={this.toggleChangeMensal}
 								/>
 								<span className="lever"></span>
-								Sim
 							</label>
 						</div>
 
@@ -96,14 +73,12 @@ class NovoRegistro extends Component {
 							É Renda:
 							<br />
 							<label>
-								Não
 								<input
 									name="isRenda"
 									type="checkbox"
 									onChange={this.toggleChangeRenda}
 								/>
 								<span className="lever"></span>
-								Sim
 							</label>
 						</div>
 
@@ -116,7 +91,43 @@ class NovoRegistro extends Component {
 								onChange={this.myChangeHandler}
 							/>
 						</div>
+						<select
+							name="tipo"
+							value={this.state.tipo}
+							onChange={this.myChangeHandler}
+						>
+							<optgroup label="Gasto">
+								<option value="Moradia">Moradia</option>
+								<option value="Mercado">Mercado</option>
+								<option value="Lazer">Lazer</option>
+								<option value="Comer fora">Comer fora</option>
+								<option value="Educação">Educação</option>
+								<option value="Saúde">Saúde</option>
+								<option value="Academia">Academia</option>
+								<option value="Outros">Outros</option>
+							</optgroup>
+							<optgroup label="Renda">
+								<option value="Salário">Salário</option>
+								<option value="Renda Extra">Renda Extra</option>
+							</optgroup>
+						</select>
 					</div>
+
+					<input
+						placeholder="Nome"
+						type="text"
+						value={this.state.nome}
+						name="nome"
+						onChange={this.myChangeHandler}
+					/>
+					<input
+						name="valor"
+						type="number"
+						placeholder="Valor"
+						value={this.state.valor}
+						onChange={this.myChangeHandler}
+					/>
+
 					<button className="button" type="submit">
 						Cadastrar
 					</button>
