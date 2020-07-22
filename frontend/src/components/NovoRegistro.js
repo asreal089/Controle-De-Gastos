@@ -2,24 +2,32 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 //import { DatePicker } from 'react-materialize';
+const axios = require('axios');
 
 class NovoRegistro extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			tipo: '',
-			nome: '',
+			descricao: '',
 			valor: '',
-			dataLancamento: '',
+			data: '',
 			isMensal: false,
 			isRenda: false,
 		};
 	}
 
-	mySubmitHandler = (event) => {
+	mySubmitHandler = async (event) => {
 		event.preventDefault();
 		console.log(this.state);
-		alert('olar');
+		var res = await axios({
+			method: 'POST',
+			url: 'api/gastos',
+			data: this.state,
+		});
+
+		console.log(res);
+		return res;
 	};
 	myChangeHandler = (event) => {
 		let nam = event.target.name;
@@ -41,7 +49,7 @@ class NovoRegistro extends Component {
 
 	handleChangeData = (newDate) => {
 		this.setState({
-			dataLancamento: newDate,
+			data: newDate,
 		});
 	};
 
@@ -86,8 +94,8 @@ class NovoRegistro extends Component {
 							<input
 								type="date"
 								label="Data do Registro"
-								value={this.state.dataLancamento}
-								name="dataLancamento"
+								value={this.state.data}
+								name="data"
 								onChange={this.myChangeHandler}
 							/>
 						</div>
@@ -114,10 +122,10 @@ class NovoRegistro extends Component {
 					</div>
 
 					<input
-						placeholder="Nome"
+						placeholder="Descrição"
 						type="text"
-						value={this.state.nome}
-						name="nome"
+						value={this.state.descricao}
+						name="descricao"
 						onChange={this.myChangeHandler}
 					/>
 					<input

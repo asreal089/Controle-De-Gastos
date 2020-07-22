@@ -12,7 +12,7 @@ module.exports = (app) => {
 					$gte: startOfMonth(new Date()),
 					$lte: endOfMonth(new Date()),
 				},
-				isRenda: false,
+				//isRenda: false,
 			},
 			function (err, registros) {
 				console.log(registros);
@@ -34,15 +34,15 @@ module.exports = (app) => {
 	});
 
 	app.post('/api/gastos', (req, res) => {
-		const { tipo, descricao, valor } = req.body;
-		const user_id = '5f11c24f5464c14e8e4c1ae4';
+		const { tipo, descricao, valor, data, isMensal, isRenda } = req.body;
+		const user_id = req.user.id;
 		const gasto = new Gasto({
 			tipo,
 			descricao,
 			valor,
 			data,
 			dataLancmento: Date.now(),
-			isGasto,
+			isMensal,
 			isRenda,
 			_user: user_id,
 		}).save();
