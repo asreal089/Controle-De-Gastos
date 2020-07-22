@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
+//import { DatePicker } from 'react-materialize';
 
 class NovoRegistro extends Component {
 	constructor(props) {
@@ -9,6 +10,7 @@ class NovoRegistro extends Component {
 			nome: '',
 			descricao: '',
 			valor: '',
+			dataLancamento: '',
 			isMensal: false,
 			isRenda: false,
 		};
@@ -34,6 +36,12 @@ class NovoRegistro extends Component {
 	toggleChangeRenda = (event) => {
 		this.setState({
 			isRenda: !this.state.isRenda,
+		});
+	};
+
+	handleChangeData = (newDate) => {
+		this.setState({
+			dataLancamento: newDate,
 		});
 	};
 
@@ -72,34 +80,41 @@ class NovoRegistro extends Component {
 						<div className="switch">
 							É mensal:
 							<br />
-							<div className="switch">
-								<label>
-									Não
-									<input
-										name="isMensal"
-										type="checkbox"
-										onChange={this.toggleChangeMensal}
-									/>
-									<span className="lever"></span>
-									Sim
-								</label>
-							</div>
+							<label>
+								Não
+								<input
+									name="isMensal"
+									type="checkbox"
+									onChange={this.toggleChangeMensal}
+								/>
+								<span className="lever"></span>
+								Sim
+							</label>
 						</div>
+
 						<div className="switch">
 							É Renda:
 							<br />
-							<div className="switch">
-								<label>
-									Não
-									<input
-										name="isRenda"
-										type="checkbox"
-										onChange={this.toggleChangeRenda}
-									/>
-									<span className="lever"></span>
-									Sim
-								</label>
-							</div>
+							<label>
+								Não
+								<input
+									name="isRenda"
+									type="checkbox"
+									onChange={this.toggleChangeRenda}
+								/>
+								<span className="lever"></span>
+								Sim
+							</label>
+						</div>
+
+						<div className="dataInput">
+							<input
+								type="date"
+								label="Data do Registro"
+								value={this.state.dataLancamento}
+								name="dataLancamento"
+								onChange={this.myChangeHandler}
+							/>
 						</div>
 					</div>
 					<button className="button" type="submit">

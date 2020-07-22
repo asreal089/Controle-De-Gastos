@@ -16,7 +16,7 @@
 	background-color: blueviolet;
 }
 .defaultForm {
-	width: 80%;
+	width: 90%;
 	max-width: 1120px;
 	height: 60vh;
 	margin: 0 auto;
@@ -28,6 +28,13 @@
 .defaultForm .container {
 	display: flex;
 	float: left;
+}
+.switch {
+	width: 20%;
+	display: inline;
+}
+.dataInput {
+	float: right;
 }
 
 .button {
