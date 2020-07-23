@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-//import { DatePicker } from 'react-materialize';
+
 const axios = require('axios');
 
 class NovoRegistro extends Component {

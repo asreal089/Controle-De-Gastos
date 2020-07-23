@@ -5,14 +5,14 @@ const Gasto = moongose.model('gasto');
 
 module.exports = (app) => {
 	app.get('/api/gastos', (req, res) => {
+		const user_id = req.user.id;
 		Gasto.find(
 			{
-				_user: '5f11c24f5464c14e8e4c1ae4',
+				_user: user_id,
 				data: {
 					$gte: startOfMonth(new Date()),
 					$lte: endOfMonth(new Date()),
 				},
-				//isRenda: false,
 			},
 			function (err, registros) {
 				console.log(registros);

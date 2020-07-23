@@ -24,6 +24,11 @@
 	align-items: center;
 	justify-content: center;
 }
+.container {
+	display: flex;
+	padding-right: 5px;
+	padding-left: 5px;
+}
 
 .defaultForm .container {
 	display: flex;
