@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 import { Link, useHistory } from 'react-router-dom';
 import { FiTrash2 } from 'react-icons/fi';
+import { PieChart } from 'react-minimal-pie-chart';
 const axios = require('axios');
 
 class Home extends Component {
@@ -24,11 +25,20 @@ class Home extends Component {
 	render() {
 		return (
 			<div className="registros_container">
+				<div className="chart-container">
+					<PieChart
+						className="pie-chart"
+						data={[
+							{ title: 'One', value: 10, color: '#E38627' },
+							{ title: 'Two', value: 15, color: '#C13C37' },
+							{ title: 'Three', value: 20, color: '#6A2135' },
+						]}
+					/>
+				</div>
 				<h3>Gastos cadastrados:</h3>
 				<Link className="button" to="//">
 					Cadastrar Novo Caso
 				</Link>
-
 				<ul>
 					{this.state.registros.map((registro) => (
 						<div class="row">
