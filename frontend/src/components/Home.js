@@ -1,32 +1,75 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
+import { Link, useHistory } from 'react-router-dom';
+import { FiTrash2 } from 'react-icons/fi';
 const axios = require('axios');
 
 class Home extends Component {
-	constructor(props) {
-		super(props);
-		var registrosDoUser = getRegistros();
-		this.state = { registros: registrosDoUser };
-		//this.setRegsistros(registros);
-
-		console.log(this.state);
-	}
+	state = {
+		registros: [],
+	};
 
 	componentDidMount() {
 		if (!this.props.auth) {
 			this.props.history.push(`/`);
 		}
-		this.state = { registros: [] };
+
+		axios.get('api/gastos').then((res) => {
+			const registros = res.data;
+			this.setState({ registros });
+		});
 	}
 
-	setRegsistros(gastos) {
-		this.setState({ registros: gastos });
-	}
 	render() {
 		return (
-			<div className="container">
+			<div className="registros_container">
 				<h3>Gastos cadastrados:</h3>
+				<Link className="button" to="/incidents/new">
+					Cadastrar Novo Caso
+				</Link>
+
+				<ul>
+					{this.state.registros.map((registro) => (
+						<div class="row">
+							<div class="col s12 m6">
+								<div class="card blue-grey darken-1">
+									<div class="card-content white-text">
+										<span class="card-title">
+											{registro.tipo}
+										</span>
+
+										<li key={registro.id}>
+											<strong>DESCRIÇÃO:</strong>
+											<p>{registro.descricao}</p>
+											<strong>VALOR:</strong>
+											<p>
+												{Intl.NumberFormat('pt-BR', {
+													style: 'currency',
+													currency: 'BRL',
+												}).format(registro.valor)}
+											</p>
+
+											<button
+												onClick={() =>
+													handleDeleteIncident(
+														registro.id
+													)
+												}
+												type="button"
+											>
+												<FiTrash2
+													size={20}
+													color="#FF0000"
+												></FiTrash2>
+											</button>
+										</li>
+									</div>
+								</div>
+							</div>
+						</div>
+					))}
+				</ul>
 			</div>
 		);
 	}
@@ -35,9 +78,12 @@ function mapStateToProps({ auth }) {
 	return { auth };
 }
 
-async function getRegistros() {
-	var res = await axios.get('api/gastos');
-	res = res.data;
-	return res;
+function handleDeleteIncident(event) {
+	alert('Registro deletado');
 }
+
+function handleLogout(event) {
+	alert('Voce esta se desligando');
+}
+
 export default connect(mapStateToProps, actions)(Home);

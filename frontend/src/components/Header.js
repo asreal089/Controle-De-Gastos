@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { FiPower } from 'react-icons/fi';
 
 class Header extends Component {
 	renderContent() {
@@ -20,8 +21,13 @@ class Header extends Component {
 						<li>
 							<Link to={'/registro'}>Novo Registro</Link>
 						</li>
+
 						<li>
-							<a href="/auth/logout">Logout</a>
+							<a href="/auth/logout">
+								<button type="button">
+									<FiPower size={18} color="#FFF" />
+								</button>
+							</a>
 						</li>
 					</span>
 				);
