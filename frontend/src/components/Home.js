@@ -33,7 +33,7 @@ class Home extends Component {
 					{this.state.registros.map((registro) => (
 						<div class="row">
 							<div class="col s12 m6">
-								<div class="card blue-grey darken-1">
+								<div class="card">
 									<div class="card-content white-text">
 										<span class="card-title">
 											{registro.tipo}
