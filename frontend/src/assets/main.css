@@ -47,7 +47,17 @@
 	float: right;
 	padding-right: 5px;
 }
-
+.card-content {
+	background-color: blueviolet;
+}
+.registros_container .button {
+	width: 50%;
+}
+ul {
+	-webkit-column-count: 2;
+	-moz-column-count: 2;
+	column-count: 2;
+}
 .button {
 	width: 100%;
 	height: 60px;
