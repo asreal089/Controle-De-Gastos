@@ -36,7 +36,7 @@ class Home extends Component {
 					/>
 				</div>
 				<h3>Gastos cadastrados:</h3>
-				<Link className="button" to="//">
+				<Link className="button" to="/registro">
 					Cadastrar Novo Caso
 				</Link>
 				<ul>
@@ -61,6 +61,7 @@ class Home extends Component {
 											</p>
 
 											<button
+												className="trashButton"
 												onClick={() =>
 													handleDeleteIncident(
 														registro.id

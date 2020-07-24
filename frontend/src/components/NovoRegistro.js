@@ -26,8 +26,7 @@ class NovoRegistro extends Component {
 			data: this.state,
 		});
 
-		console.log(res);
-		return res;
+		this.props.history.push(`/home`);
 	};
 	myChangeHandler = (event) => {
 		let nam = event.target.name;

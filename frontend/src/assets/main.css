@@ -15,6 +15,13 @@
 #Carousel-2 li {
 	background-color: blueviolet;
 }
+.trashButton button {
+	background-color: #fff;
+}
+
+.trashButton button:focus {
+	background-color: #fff;
+}
 .defaultForm {
 	width: 90%;
 	max-width: 1120px;
