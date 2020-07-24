@@ -25,7 +25,7 @@ class Home extends Component {
 		return (
 			<div className="registros_container">
 				<h3>Gastos cadastrados:</h3>
-				<Link className="button" to="/incidents/new">
+				<Link className="button" to="//">
 					Cadastrar Novo Caso
 				</Link>
 
