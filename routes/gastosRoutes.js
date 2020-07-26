@@ -41,7 +41,7 @@ module.exports = (app) => {
 			descricao,
 			valor,
 			data,
-			dataLancmento: Date.now(),
+			dataLancamento: Date.now(),
 			isMensal,
 			isRenda,
 			_user: user_id,

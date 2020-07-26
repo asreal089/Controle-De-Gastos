@@ -8,7 +8,7 @@ class NovoRegistro extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			tipo: '',
+			tipo: 'Moradia',
 			descricao: '',
 			valor: '',
 			data: '',
@@ -102,6 +102,7 @@ class NovoRegistro extends Component {
 							name="tipo"
 							value={this.state.tipo}
 							onChange={this.myChangeHandler}
+							selected="Moradia"
 						>
 							<optgroup label="Gasto">
 								<option value="Moradia">Moradia</option>

@@ -30,51 +30,51 @@ class Home extends Component {
 				<div>
 					<PieChartGastos dados={this.state.registros} />
 				</div>
+
+				<table>
+					<thead>
+						<tr>
+							<th>Tipo</th>
+							<th>Descrição</th>
+							<th>Data</th>
+							<th>Valor</th>
+							<th>Deletar</th>
+						</tr>
+					</thead>
+					{this.state.registros.map((registro) => (
+						<tbody>
+							<tr key={registro.id}>
+								<td>{registro.tipo}</td>
+								<td>{registro.descricao}</td>
+								<td>{registro.data}</td>
+								<td>
+									{Intl.NumberFormat('pt-BR', {
+										style: 'currency',
+										currency: 'BRL',
+									}).format(registro.valor)}
+								</td>
+								<td>
+									<button
+										className="trashButton"
+										onClick={() =>
+											handleDeleteIncident(registro.id)
+										}
+										type="button"
+									>
+										<FiTrash2
+											size={20}
+											color="#FF0000"
+										></FiTrash2>
+									</button>
+								</td>
+							</tr>
+						</tbody>
+					))}
+				</table>
+
 				<Link className="button" to="/registro">
 					Cadastrar Novo Caso
 				</Link>
-				<ul>
-					{this.state.registros.map((registro) => (
-						<div class="row">
-							<div class="col s12 m6">
-								<div class="card">
-									<div class="card-content white-text">
-										<span class="card-title">
-											{registro.tipo}
-										</span>
-
-										<li key={registro.id}>
-											<strong>DESCRIÇÃO:</strong>
-											<p>{registro.descricao}</p>
-											<strong>VALOR:</strong>
-											<p>
-												{Intl.NumberFormat('pt-BR', {
-													style: 'currency',
-													currency: 'BRL',
-												}).format(registro.valor)}
-											</p>
-
-											<button
-												className="trashButton"
-												onClick={() =>
-													handleDeleteIncident(
-														registro.id
-													)
-												}
-												type="button"
-											>
-												<FiTrash2
-													size={20}
-													color="#FF0000"
-												></FiTrash2>
-											</button>
-										</li>
-									</div>
-								</div>
-							</div>
-						</div>
-					))}
-				</ul>
 			</div>
 		);
 	}
