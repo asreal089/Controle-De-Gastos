@@ -41,8 +41,8 @@ class Home extends Component {
 							<th>Deletar</th>
 						</tr>
 					</thead>
-					{this.state.registros.map((registro) => (
-						<tbody>
+					<tbody>
+						{this.state.registros.map((registro) => (
 							<tr key={registro.id}>
 								<td>{registro.tipo}</td>
 								<td>{registro.descricao}</td>
@@ -68,8 +68,8 @@ class Home extends Component {
 									</button>
 								</td>
 							</tr>
-						</tbody>
-					))}
+						))}
+					</tbody>
 				</table>
 
 				<Link className="button" to="/registro">

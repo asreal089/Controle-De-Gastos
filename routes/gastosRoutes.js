@@ -21,6 +21,24 @@ module.exports = (app) => {
 		);
 	});
 
+	app.get('/api/gastos', (req, res) => {
+		const user_id = req.user.id;
+		Gasto.find(
+			{
+				_user: user_id,
+				data: {
+					$gte: startOfMonth(new Date()),
+					$lte: endOfMonth(new Date()),
+				},
+				isRenda: true,
+			},
+			function (err, registros) {
+				console.log(registros);
+				res.send(registros);
+			}
+		);
+	});
+
 	app.put('/api/gastos', (req, res) => {
 		const {
 			tipo,

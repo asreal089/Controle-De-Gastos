@@ -4,6 +4,18 @@ import PieChart from 'highcharts-react-official';
 import Highcharts from 'highcharts';
 
 class PieChartGastos extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			income: '',
+			percent: '',
+			totalTax: '',
+			grossPrice: '',
+			otherValues: '',
+			Data: {},
+		};
+	}
+
 	initChild = () => {
 		this.state = {
 			chart: {
@@ -36,10 +48,10 @@ class PieChartGastos extends Component {
 			series: {
 				name: 'Brands',
 				colorByPoint: true,
-				data: this.props.dados.map((registro) => ({
-					name: registro.tipo,
-					y: registro.valor,
-				})),
+				data: {
+					name: '',
+					y: 1500,
+				},
 			},
 		};
 	};
