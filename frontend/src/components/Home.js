@@ -28,7 +28,7 @@ class Home extends Component {
 			<div className="registros_container">
 				<h3>Gastos cadastrados:</h3>
 				<div>
-					<PieChartGastos />
+					<PieChartGastos dados={this.state.registros} />
 				</div>
 				<Link className="button" to="/registro">
 					Cadastrar Novo Caso
