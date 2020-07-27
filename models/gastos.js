@@ -7,7 +7,6 @@ const gastoSchema = new Schema({
 	valor: Number,
 	data: Date,
 	dataLancamento: Date,
-	isMensal: Boolean,
 	isRenda: Boolean,
 	_user: { type: Schema.Types.ObjectId, ref: 'user' },
 });

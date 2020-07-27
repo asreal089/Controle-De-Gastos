@@ -12,7 +12,6 @@ class NovoRegistro extends Component {
 			descricao: '',
 			valor: '',
 			data: '',
-			isMensal: false,
 			isRenda: false,
 		};
 	}
@@ -32,12 +31,6 @@ class NovoRegistro extends Component {
 		let nam = event.target.name;
 		let val = event.target.value;
 		this.setState({ [nam]: val });
-	};
-
-	toggleChangeMensal = (event) => {
-		this.setState({
-			isMensal: !this.state.isMensal,
-		});
 	};
 
 	toggleChangeRenda = (event) => {
@@ -63,19 +56,6 @@ class NovoRegistro extends Component {
 			<div className="defaultForm">
 				<form onSubmit={this.mySubmitHandler}>
 					<div className="container">
-						<div className="switch">
-							É mensal:
-							<br />
-							<label>
-								<input
-									name="isMensal"
-									type="checkbox"
-									onChange={this.toggleChangeMensal}
-								/>
-								<span className="lever"></span>
-							</label>
-						</div>
-
 						<div className="switch">
 							É Renda:
 							<br />
