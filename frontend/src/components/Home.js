@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import { Link, useHistory } from 'react-router-dom';
-import { FiTrash2 } from 'react-icons/fi';
-import PieChartGastos from './PieChartGastos';
+import { Link } from 'react-router-dom';
+import { FiTrash2, FiEdit } from 'react-icons/fi';
+//import PieChartGastos from './PieChartGastos';
 
 const axios = require('axios');
 
 class Home extends Component {
-	state = {
-		registros: [],
-	};
+	constructor(props) {
+		super(props);
+		this.state = {
+			registros: [],
+		};
+	}
 
 	componentDidMount() {
 		if (!this.props.auth) {
@@ -26,10 +29,12 @@ class Home extends Component {
 	render() {
 		return (
 			<div className="registros_container">
+				{/*this.state.registros && (
+					<div>
+						<PieChartGastos dados={this.state.registros} />
+					</div>
+				)*/}
 				<h3>Gastos cadastrados:</h3>
-				<div>
-					<PieChartGastos dados={this.state.registros} />
-				</div>
 
 				<table>
 					<thead>
@@ -38,7 +43,7 @@ class Home extends Component {
 							<th>Descrição</th>
 							<th>Data</th>
 							<th>Valor</th>
-							<th>Deletar</th>
+							<th>Opções:</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -57,14 +62,26 @@ class Home extends Component {
 									<button
 										className="trashButton"
 										onClick={() =>
-											handleDeleteIncident(registro.id)
+											handleDeleteRegistro(registro.id)
 										}
 										type="button"
 									>
 										<FiTrash2
 											size={20}
-											color="#FF0000"
+											color="#f08080"
 										></FiTrash2>
+									</button>
+									<button
+										className="trashButton"
+										onClick={() =>
+											handleEditRegistro(registro.id)
+										}
+										type="button"
+									>
+										<FiEdit
+											size={20}
+											color="#90ee90"
+										></FiEdit>
 									</button>
 								</td>
 							</tr>
@@ -83,12 +100,12 @@ function mapStateToProps({ auth }) {
 	return { auth };
 }
 
-function handleDeleteIncident(event) {
+function handleDeleteRegistro(event) {
 	alert('Registro deletado');
 }
 
-function handleLogout(event) {
-	alert('Voce esta se desligando');
+function handleEditRegistro(event) {
+	alert('Registro editado');
 }
 
 export default connect(mapStateToProps, actions)(Home);

@@ -41,14 +41,29 @@ module.exports = (app) => {
 
 	app.put('/api/gastos', (req, res) => {
 		const {
+			id,
 			tipo,
 			descricao,
 			valor,
 			data,
 			dataLancamento,
-			isMensal,
 			isRenda,
 		} = req.body;
+
+		Gasto.findByIdAndUpdate(
+			{
+				_id: id,
+				tipo,
+				descricao,
+				valor,
+				data,
+				dataLancamento,
+				isRenda,
+			},
+			function (err, reg) {
+				res.send('ok');
+			}
+		);
 	});
 
 	app.post('/api/gastos', (req, res) => {

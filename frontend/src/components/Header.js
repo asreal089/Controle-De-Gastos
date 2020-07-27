@@ -25,7 +25,7 @@ class Header extends Component {
 						<li>
 							<a href="/auth/logout">
 								<button type="button">
-									<FiPower size={18} color="#FFF" />
+									<FiPower size={18} color="#FF0000" />
 								</button>
 							</a>
 						</li>

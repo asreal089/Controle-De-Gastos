@@ -6,7 +6,21 @@ import Highcharts from 'highcharts';
 class PieChartGastos extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {
+
+		this.state = { options: null };
+
+		var dados = this.props.dados;
+		var gastos = dados.filter((gasto) => gasto.isRenda == false);
+		const pieData = [];
+		gastos.forEach((element) => {
+			console.log(element);
+			var temp = {
+				name: element.tipo,
+				y: element.valor,
+			};
+			pieData.push(temp);
+		});
+		const highchartsOptions = {
 			options: {
 				chart: {
 					plotBackgroundColor: null,
@@ -41,77 +55,22 @@ class PieChartGastos extends Component {
 					{
 						name: 'Gastos',
 						colorByPoint: true,
-						data: [
-							{
-								name: 'Chrome',
-								y: 61.41,
-								sliced: true,
-								selected: true,
-							},
-							{
-								name: 'Internet Explorer',
-								y: 11.84,
-							},
-							{
-								name: 'Firefox',
-								y: 10.85,
-							},
-							{
-								name: 'Edge',
-								y: 4.67,
-							},
-							{
-								name: 'Safari',
-								y: 4.18,
-							},
-							{
-								name: 'Sogou Explorer',
-								y: 1.64,
-							},
-							{
-								name: 'Opera',
-								y: 1.6,
-							},
-							{
-								name: 'QQ',
-								y: 1.2,
-							},
-							{
-								name: 'Other',
-								y: 2.61,
-							},
-						],
+						data: pieData,
 					},
 				],
 			},
 		};
+
+		this.setState({ options: highchartsOptions });
 	}
-
-	initChild = () => {
-		var dados = this.props.dados;
-		var gastos = dados.filter((gasto) => gasto.isRenda == false);
-		var renda = dados.filter((gasto) => gasto.isRenda == true);
-		var gastosGrafico = [];
-		gastos.forEach((element) => {
-			/*this.state.options.series.data.push({
-				name: element.tipo,
-				y: element.valor,
-			});*/
-		});
-		//console.log(gastosGrafico);
-	};
-
-	componentDidUpdate = () => this.initChild();
 
 	render() {
 		return (
 			<div>
-				{true && (
-					<PieChart
-						highcharts={Highcharts}
-						options={this.state.options}
-					/>
-				)}
+				<PieChart
+					highcharts={Highcharts}
+					options={this.state.options}
+				/>
 			</div>
 		);
 	}

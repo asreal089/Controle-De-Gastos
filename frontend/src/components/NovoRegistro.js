@@ -19,7 +19,7 @@ class NovoRegistro extends Component {
 	mySubmitHandler = async (event) => {
 		event.preventDefault();
 		console.log(this.state);
-		var res = await axios({
+		await axios({
 			method: 'POST',
 			url: 'api/gastos',
 			data: this.state,
@@ -90,13 +90,16 @@ class NovoRegistro extends Component {
 								<option value="Lazer">Lazer</option>
 								<option value="Comer fora">Comer fora</option>
 								<option value="Educação">Educação</option>
+								<option value="Seguro">Seguro</option>
+								<option value="Imposto">Imposto</option>
 								<option value="Saúde">Saúde</option>
 								<option value="Academia">Academia</option>
 								<option value="Outros">Outros</option>
 							</optgroup>
 							<optgroup label="Renda">
 								<option value="Salário">Salário</option>
-								<option value="Renda Extra">Renda Extra</option>
+								<option value="Renda extra">Renda Extra</option>
+								<option value="Proventos">Proventos</option>
 							</optgroup>
 						</select>
 					</div>
