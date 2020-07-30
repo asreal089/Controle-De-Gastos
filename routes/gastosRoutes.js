@@ -61,9 +61,18 @@ module.exports = (app) => {
 				isRenda,
 			},
 			function (err, reg) {
-				res.send('ok');
+				res.send(reg);
 			}
 		);
+	});
+
+	app.delete('/api/gastos', (req, res) => {
+		//const { id: _id } = req.body;
+		//console.log(id);
+		Gasto.findOneAndDelete({ _id: req.body._id }, function (err, res) {
+			console.log(res);
+		});
+		res.send(req.body._id);
 	});
 
 	app.post('/api/gastos', (req, res) => {

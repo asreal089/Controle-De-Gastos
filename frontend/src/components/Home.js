@@ -26,6 +26,19 @@ class Home extends Component {
 		});
 	}
 
+	handleDeleteRegistro = async (reg) => {
+		await axios({
+			method: 'DELETE',
+			url: 'api/gastos',
+			data: reg,
+		}).then((res) => {
+			axios.get('api/gastos').then((res) => {
+				const registros = res.data;
+				this.setState({ registros });
+			});
+		});
+	};
+
 	render() {
 		return (
 			<div className="registros_container">
@@ -48,7 +61,7 @@ class Home extends Component {
 					</thead>
 					<tbody>
 						{this.state.registros.map((registro) => (
-							<tr key={registro.id}>
+							<tr key={registro._id}>
 								<td>{registro.tipo}</td>
 								<td>{registro.descricao}</td>
 								<td>{registro.data}</td>
@@ -62,7 +75,7 @@ class Home extends Component {
 									<button
 										className="trashButton"
 										onClick={() =>
-											handleDeleteRegistro(registro.id)
+											this.handleDeleteRegistro(registro)
 										}
 										type="button"
 									>
@@ -71,18 +84,17 @@ class Home extends Component {
 											color="#f08080"
 										></FiTrash2>
 									</button>
-									<button
-										className="trashButton"
-										onClick={() =>
-											handleEditRegistro(registro.id)
-										}
-										type="button"
-									>
-										<FiEdit
-											size={20}
-											color="#90ee90"
-										></FiEdit>
-									</button>
+									<Link to={'/registro?id=' + registro._id}>
+										<button
+											className="trashButton"
+											type="button"
+										>
+											<FiEdit
+												size={20}
+												color="#90ee90"
+											></FiEdit>
+										</button>
+									</Link>
 								</td>
 							</tr>
 						))}
@@ -98,14 +110,6 @@ class Home extends Component {
 }
 function mapStateToProps({ auth }) {
 	return { auth };
-}
-
-function handleDeleteRegistro(event) {
-	alert('Registro deletado');
-}
-
-function handleEditRegistro(event) {
-	alert('Registro editado');
 }
 
 export default connect(mapStateToProps, actions)(Home);
