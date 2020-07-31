@@ -18,7 +18,6 @@ class NovoRegistro extends Component {
 
 	mySubmitHandler = async (event) => {
 		event.preventDefault();
-		console.log(this.state);
 		await axios({
 			method: 'POST',
 			url: 'api/gastos',

@@ -15,7 +15,6 @@ module.exports = (app) => {
 				},
 			},
 			function (err, registros) {
-				console.log(registros);
 				res.send(registros);
 			}
 		);
@@ -33,7 +32,6 @@ module.exports = (app) => {
 				isRenda: true,
 			},
 			function (err, registros) {
-				console.log(registros);
 				res.send(registros);
 			}
 		);
@@ -67,11 +65,7 @@ module.exports = (app) => {
 	});
 
 	app.delete('/api/gastos', (req, res) => {
-		//const { id: _id } = req.body;
-		//console.log(id);
-		Gasto.findOneAndDelete({ _id: req.body._id }, function (err, res) {
-			console.log(res);
-		});
+		Gasto.findOneAndDelete({ _id: req.body._id }, function (err, res) {});
 		res.send(req.body._id);
 	});
 
