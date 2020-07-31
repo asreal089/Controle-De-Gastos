@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
+import qs from 'qs';
 
 const axios = require('axios');
 
@@ -16,13 +17,35 @@ class NovoRegistro extends Component {
 		};
 	}
 
+	myEditHandler = async (id) => {
+		axios.get('api/gastos/' + id.id).then((res) => {
+			const registro = res.data;
+			this.setState({
+				id: id.id,
+				tipo: registro.tipo,
+				descricao: registro.descricao,
+				valor: registro.valor,
+				data: registro.data,
+				isRenda: registro.isRenda,
+			});
+		});
+	};
+
 	mySubmitHandler = async (event) => {
 		event.preventDefault();
-		await axios({
-			method: 'POST',
-			url: 'api/gastos',
-			data: this.state,
-		});
+		if (this.state.id) {
+			await axios({
+				method: 'PUT',
+				url: 'api/gastos',
+				data: this.state,
+			});
+		} else {
+			await axios({
+				method: 'POST',
+				url: 'api/gastos',
+				data: this.state,
+			});
+		}
 
 		this.props.history.push(`/home`);
 	};
@@ -47,6 +70,12 @@ class NovoRegistro extends Component {
 	componentDidMount() {
 		if (!this.props.auth) {
 			this.props.history.push(`/`);
+		}
+		const id = qs.parse(this.props.location.search, {
+			ignoreQueryPrefix: true,
+		});
+		if (id.id) {
+			this.myEditHandler(id);
 		}
 	}
 

@@ -1,9 +1,24 @@
 const moongose = require('mongoose');
 const endOfMonth = require('date-fns/endOfMonth');
 const startOfMonth = require('date-fns/startOfMonth');
+const { id } = require('date-fns/locale');
 const Gasto = moongose.model('gasto');
 
 module.exports = (app) => {
+	app.get('/api/gastos/:id', (req, res) => {
+		const user_id = req.user.id;
+		const gasto_id = req.params.id;
+		Gasto.findOne(
+			{
+				_user: user_id,
+				_id: gasto_id,
+			},
+			function (err, registro) {
+				res.send(registro);
+			}
+		);
+	});
+
 	app.get('/api/gastos', (req, res) => {
 		const user_id = req.user.id;
 		Gasto.find(
@@ -47,10 +62,9 @@ module.exports = (app) => {
 			dataLancamento,
 			isRenda,
 		} = req.body;
-
 		Gasto.findByIdAndUpdate(
+			{ _id: id },
 			{
-				_id: id,
 				tipo,
 				descricao,
 				valor,
