@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 import { Link } from 'react-router-dom';
 import { FiTrash2, FiEdit } from 'react-icons/fi';
+import PieChartGastos from './PieChartGastos';
 
 const axios = require('axios');
 
@@ -41,6 +42,7 @@ class Home extends Component {
 	render() {
 		return (
 			<div className="registros_container">
+				<PieChartGastos dados={this.state.registros} />
 				<h3>Gastos cadastrados:</h3>
 
 				<table>

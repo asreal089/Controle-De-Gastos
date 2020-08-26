@@ -1,79 +1,106 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { render } from 'react-dom';
 import PieChart from 'highcharts-react-official';
 import Highcharts from 'highcharts';
 
-class PieChartGastos extends Component {
-	constructor(props) {
-		super(props);
+const PieChartGastos = (props) => {
+	var dados = props.dados;
+	var gastos = dados.filter((gasto) => gasto.isRenda == false);
+	const pieData = [];
+	gastos.forEach((element) => {
+		console.log(element);
+		var temp = {
+			name: element.tipo,
+			y: element.valor,
+		};
+		pieData.push(temp);
+	});
 
-		this.state = { options: null };
+	console.log(pieData);
 
-		var dados = this.props.dados;
-		var gastos = dados.filter((gasto) => gasto.isRenda == false);
-		const pieData = [];
-		gastos.forEach((element) => {
-			console.log(element);
-			var temp = {
-				name: element.tipo,
-				y: element.valor,
-			};
-			pieData.push(temp);
-		});
-		const highchartsOptions = {
-			options: {
-				chart: {
-					plotBackgroundColor: null,
-					plotBorderWidth: null,
-					plotShadow: false,
-					type: 'pie',
+	const highchartsOptions = {
+		chart: {
+			plotBackgroundColor: null,
+			plotBorderWidth: null,
+			plotShadow: false,
+			type: 'pie',
+		},
+		title: {
+			text: 'Browser market shares in January, 2018',
+		},
+		tooltip: {
+			pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>',
+		},
+		accessibility: {
+			point: {
+				valueSuffix: '%',
+			},
+		},
+		plotOptions: {
+			pie: {
+				allowPointSelect: true,
+				cursor: 'pointer',
+				dataLabels: {
+					enabled: true,
+					format: '<b>{point.name}</b>: {point.percentage:.1f} %',
 				},
-				title: {
-					text: 'Gastos do Mês',
-				},
-				tooltip: {
-					pointFormat:
-						'{series.name}: <b>{point.percentage:.1f}%</b>',
-				},
-				accessibility: {
-					point: {
-						valueSuffix: '%',
-					},
-				},
-				plotOptions: {
-					pie: {
-						allowPointSelect: true,
-						cursor: 'pointer',
-						dataLabels: {
-							enabled: true,
-							format:
-								'<b>{point.name}</b>: {point.percentage:.1f} %',
-						},
-					},
-				},
-				series: [
+			},
+		},
+		series: [
+			{
+				name: 'Brands',
+				colorByPoint: true,
+				data: [
 					{
-						name: 'Gastos',
-						colorByPoint: true,
-						data: pieData,
+						name: 'Chrome',
+						y: 61.41,
+						sliced: true,
+						selected: true,
+					},
+					{
+						name: 'Internet Explorer',
+						y: 11.84,
+					},
+					{
+						name: 'Firefox',
+						y: 10.85,
+					},
+					{
+						name: 'Edge',
+						y: 4.67,
+					},
+					{
+						name: 'Safari',
+						y: 4.18,
+					},
+					{
+						name: 'Sogou Explorer',
+						y: 1.64,
+					},
+					{
+						name: 'Opera',
+						y: 1.6,
+					},
+					{
+						name: 'QQ',
+						y: 1.2,
+					},
+					{
+						name: 'Other',
+						y: 2.61,
 					},
 				],
 			},
-		};
+		],
+	};
 
-		this.setState({ options: highchartsOptions });
-	}
+	const [options, setOptions] = useState(highchartsOptions);
 
-	render() {
-		return (
-			<div>
-				<PieChart
-					highcharts={Highcharts}
-					options={this.state.options}
-				/>
-			</div>
-		);
-	}
-}
+	return (
+		<div>
+			<PieChart highcharts={Highcharts} options={options} />
+		</div>
+	);
+};
 
 export default PieChartGastos;

@@ -1,7 +1,7 @@
 const moongose = require('mongoose');
 const endOfMonth = require('date-fns/endOfMonth');
 const startOfMonth = require('date-fns/startOfMonth');
-const { id } = require('date-fns/locale');
+//const { id } = require('date-fns/locale');
 const Gasto = moongose.model('gasto');
 
 module.exports = (app) => {
