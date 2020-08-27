@@ -12,6 +12,8 @@ class Home extends Component {
 		super(props);
 		this.state = {
 			registros: [],
+			renda: [],
+			totalTipo: [],
 		};
 	}
 
@@ -23,6 +25,17 @@ class Home extends Component {
 		axios.get('api/gastos').then((res) => {
 			const registros = res.data;
 			this.setState({ registros });
+		});
+
+		axios.get('api/renda').then((res) => {
+			const renda = res.data;
+			this.setState({ renda });
+		});
+
+		axios.get('api/total_gasto').then((res) => {
+			const totalTipo = res.data;
+			this.setState({ totalTipo });
+			console.log(res.data);
 		});
 	}
 
@@ -42,8 +55,11 @@ class Home extends Component {
 	render() {
 		return (
 			<div className="registros_container">
-				<PieChartGastos dados={this.state.registros} />
-				<h3>Gastos cadastrados:</h3>
+				{this.state.totalTipo.length > 0 && (
+					<PieChartGastos dados={this.state.totalTipo} />
+				)}
+
+				<h4>Gastos:</h4>
 
 				<table>
 					<thead>
@@ -97,8 +113,62 @@ class Home extends Component {
 					</tbody>
 				</table>
 
+				<h4>Renda:</h4>
+
+				<table>
+					<thead>
+						<tr>
+							<th>Tipo</th>
+							<th>Descrição</th>
+							<th>Data</th>
+							<th>Valor</th>
+							<th>Opções:</th>
+						</tr>
+					</thead>
+					<tbody>
+						{this.state.renda.map((registro) => (
+							<tr key={registro._id}>
+								<td>{registro.tipo}</td>
+								<td>{registro.descricao}</td>
+								<td>{registro.data}</td>
+								<td>
+									{Intl.NumberFormat('pt-BR', {
+										style: 'currency',
+										currency: 'BRL',
+									}).format(registro.valor)}
+								</td>
+								<td>
+									<button
+										className="trashButton"
+										onClick={() =>
+											this.handleDeleteRegistro(registro)
+										}
+										type="button"
+									>
+										<FiTrash2
+											size={20}
+											color="#f08080"
+										></FiTrash2>
+									</button>
+									<Link to={'/registro?id=' + registro._id}>
+										<button
+											className="trashButton"
+											type="button"
+										>
+											<FiEdit
+												size={20}
+												color="#90ee90"
+											></FiEdit>
+										</button>
+									</Link>
+								</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
+
 				<Link className="button" to="/registro">
-					Cadastrar Novo Caso
+					Cadastrar Novo Registro
 				</Link>
 			</div>
 		);
