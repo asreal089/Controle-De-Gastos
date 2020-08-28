@@ -19,6 +19,9 @@ class Header extends Component {
 				return (
 					<span>
 						<li>
+							<Link to={'/dashboard'}>Dashboard</Link>
+						</li>
+						<li>
 							<Link to={'/registro'}>Novo Registro</Link>
 						</li>
 

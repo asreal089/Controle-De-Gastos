@@ -68,7 +68,6 @@ module.exports = (app) => {
 						isRenda: false,
 					},
 				},
-
 				{
 					$lookup: {
 						from: 'user',
@@ -77,7 +76,6 @@ module.exports = (app) => {
 						as: 'users',
 					},
 				},
-				//{ $project: { users: { _id: user_id } } },
 				{
 					$group: {
 						_id: '$tipo',

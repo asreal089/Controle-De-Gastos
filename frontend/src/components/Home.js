@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 import { Link } from 'react-router-dom';
 import { FiTrash2, FiEdit } from 'react-icons/fi';
-import PieChartGastos from './PieChartGastos';
 
 const axios = require('axios');
 
@@ -31,12 +30,6 @@ class Home extends Component {
 			const renda = res.data;
 			this.setState({ renda });
 		});
-
-		axios.get('api/total_gasto').then((res) => {
-			const totalTipo = res.data;
-			this.setState({ totalTipo });
-			console.log(res.data);
-		});
 	}
 
 	handleDeleteRegistro = async (reg) => {
@@ -55,10 +48,6 @@ class Home extends Component {
 	render() {
 		return (
 			<div className="registros_container">
-				{this.state.totalTipo.length > 0 && (
-					<PieChartGastos dados={this.state.totalTipo} />
-				)}
-
 				<h4>Gastos:</h4>
 
 				<table>
