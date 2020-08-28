@@ -24,6 +24,7 @@ app.use(bodyParser.json());
 
 require('./routes/authRoutes')(app);
 require('./routes/gastosRoutes')(app);
+require('./routes/resumoRoutes')(app);
 moongose.connect(keys.mongoURI, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,

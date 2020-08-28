@@ -61,7 +61,7 @@ class Dashboard extends Component {
 			},
 			series: [
 				{
-					name: 'Brands',
+					name: '% do gasto',
 					colorByPoint: true,
 					data: this.state.totalTipo,
 				},

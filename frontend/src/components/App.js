@@ -23,12 +23,12 @@ class App extends Component {
 					<div>
 						<Header />
 						<Route exact={true} path="/" component={Lading} />
-						<Route exact={true} path="/home" component={Home} />
 						<Route
 							exact={true}
-							path="/dashboard"
+							path="/home"
 							component={Dashboard}
 						/>
+						<Route exact={true} path="/home" component={Home} />
 						<Route
 							exact={true}
 							path="/registro"

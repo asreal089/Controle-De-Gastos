@@ -1,7 +1,6 @@
 const moongose = require('mongoose');
 const endOfMonth = require('date-fns/endOfMonth');
 const startOfMonth = require('date-fns/startOfMonth');
-//const { id } = require('date-fns/locale');
 const Gasto = moongose.model('gasto');
 
 module.exports = (app) => {
@@ -39,7 +38,6 @@ module.exports = (app) => {
 
 	app.get('/api/renda', (req, res) => {
 		const user_id = req.user.id;
-		console.log(user_id);
 		Gasto.find(
 			{
 				_user: user_id,
@@ -49,41 +47,6 @@ module.exports = (app) => {
 				},
 				isRenda: true,
 			},
-			function (err, registros) {
-				res.send(registros);
-			}
-		);
-	});
-
-	app.get('/api/total_gasto', (req, res) => {
-		const user_id = req.user.id;
-		Gasto.aggregate(
-			[
-				{
-					$match: {
-						data: {
-							$gte: startOfMonth(new Date()),
-							$lte: endOfMonth(new Date()),
-						},
-						isRenda: false,
-					},
-				},
-				{
-					$lookup: {
-						from: 'user',
-						localField: '_id',
-						foreignField: '_user',
-						as: 'users',
-					},
-				},
-				{
-					$group: {
-						_id: '$tipo',
-						totalAmount: { $sum: '$valor' },
-					},
-				},
-			],
-
 			function (err, registros) {
 				res.send(registros);
 			}
