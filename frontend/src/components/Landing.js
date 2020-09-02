@@ -24,17 +24,41 @@ class Landing extends Component {
 					indicators: true,
 				}}
 			>
-				<div className>
+				<div className="carousel-item">
 					<h2>Seu site de controle de Gasto</h2>
 					<p>gerencie orçamento de forma simples e fácil</p>
+					<div className="carousel-fixed-item center">
+						<a
+							href="/auth"
+							className="btn waves-effect white grey-text darken-text-2"
+						>
+							Log with Google
+						</a>
+					</div>
 				</div>
-				<div className>
+				<div className="carousel-item">
 					<h2>Seu site de controle de Gasto</h2>
 					<p>Dashbord com graficos para fácil visualização.</p>
+					<div className="carousel-fixed-item center">
+						<a
+							href="/auth"
+							className="btn waves-effect white grey-text darken-text-2"
+						>
+							Log with Google
+						</a>
+					</div>
 				</div>
-				<div className>
+				<div className="carousel-item">
 					<h2>Seu site de controle de Gasto</h2>
 					<p>Crie o hábito e melhore a sua financeira</p>
+					<div className="carousel-fixed-item center">
+						<a
+							href="/auth"
+							className="btn waves-effect white grey-text darken-text-2"
+						>
+							Log with Google
+						</a>
+					</div>
 				</div>
 			</Carousel>
 		);

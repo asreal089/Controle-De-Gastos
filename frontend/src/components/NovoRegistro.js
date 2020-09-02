@@ -122,6 +122,7 @@ class NovoRegistro extends Component {
 								<option value="Imposto">Imposto</option>
 								<option value="Saúde">Saúde</option>
 								<option value="Academia">Academia</option>
+								<option value="Cartão">Cartão</option>
 								<option value="Outros">Outros</option>
 							</optgroup>
 							<optgroup label="Renda">

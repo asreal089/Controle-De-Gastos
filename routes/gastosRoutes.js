@@ -20,7 +20,6 @@ module.exports = (app) => {
 
 	app.get('/api/gastos', (req, res) => {
 		const user_id = req.user.id;
-		console.log(user_id);
 		Gasto.find(
 			{
 				_user: user_id,
