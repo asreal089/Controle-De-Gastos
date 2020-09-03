@@ -2,6 +2,7 @@ const moongose = require('mongoose');
 const endOfMonth = require('date-fns/endOfMonth');
 const startOfMonth = require('date-fns/startOfMonth');
 const Gasto = moongose.model('gasto');
+const objectId = moongose.Types.ObjectId;
 
 module.exports = (app) => {
 	app.get('/api/total_gasto', (req, res) => {
@@ -15,6 +16,7 @@ module.exports = (app) => {
 							$lte: endOfMonth(new Date()),
 						},
 						isRenda: false,
+						_user: objectId(user_id),
 					},
 				},
 				{
@@ -34,6 +36,7 @@ module.exports = (app) => {
 			],
 
 			function (err, registros) {
+				console.log(registros);
 				res.send(registros);
 			}
 		);
