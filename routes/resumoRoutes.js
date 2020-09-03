@@ -20,14 +20,6 @@ module.exports = (app) => {
 					},
 				},
 				{
-					$lookup: {
-						from: 'user',
-						localField: '_id',
-						foreignField: '_user',
-						as: 'users',
-					},
-				},
-				{
 					$group: {
 						_id: '$tipo',
 						totalAmount: { $sum: '$valor' },
@@ -36,7 +28,6 @@ module.exports = (app) => {
 			],
 
 			function (err, registros) {
-				console.log(registros);
 				res.send(registros);
 			}
 		);
