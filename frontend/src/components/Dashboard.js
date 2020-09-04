@@ -25,7 +25,6 @@ class Dashboard extends Component {
 				var temp = { name: element._id, y: element.totalAmount };
 				totalTipo.push(temp);
 			});
-			console.log(totalTipo);
 			this.setState({ totalTipo });
 		});
 	}

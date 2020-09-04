@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 import { Link } from 'react-router-dom';
 import { FiTrash2, FiEdit } from 'react-icons/fi';
+const moment = require('moment');
 
 const axios = require('axios');
 
@@ -65,7 +66,9 @@ class Home extends Component {
 							<tr key={registro._id}>
 								<td>{registro.tipo}</td>
 								<td>{registro.descricao}</td>
-								<td>{registro.data}</td>
+								<td>
+									{moment(registro.data).format('DD-MM-YYYY')}
+								</td>
 								<td>
 									{Intl.NumberFormat('pt-BR', {
 										style: 'currency',
@@ -119,7 +122,9 @@ class Home extends Component {
 							<tr key={registro._id}>
 								<td>{registro.tipo}</td>
 								<td>{registro.descricao}</td>
-								<td>{registro.data}</td>
+								<td>
+									{moment(registro.data).format('DD-MM-YYYY')}
+								</td>
 								<td>
 									{Intl.NumberFormat('pt-BR', {
 										style: 'currency',

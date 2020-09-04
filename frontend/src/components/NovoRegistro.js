@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 import qs from 'qs';
 
+const moment = require('moment');
 const axios = require('axios');
 
 class NovoRegistro extends Component {
@@ -12,7 +13,7 @@ class NovoRegistro extends Component {
 			tipo: 'Moradia',
 			descricao: '',
 			valor: '',
-			data: '',
+			data: moment().format('MM-DD-YYYY'),
 			isRenda: false,
 		};
 	}
