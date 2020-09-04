@@ -85,7 +85,7 @@ class Home extends Component {
 									>
 										<FiTrash2
 											size={20}
-											color="#f08080"
+											color="#C724B1"
 										></FiTrash2>
 									</button>
 									<Link to={'/registro?id=' + registro._id}>
@@ -95,7 +95,7 @@ class Home extends Component {
 										>
 											<FiEdit
 												size={20}
-												color="#90ee90"
+												color="#C724B1"
 											></FiEdit>
 										</button>
 									</Link>
@@ -141,7 +141,7 @@ class Home extends Component {
 									>
 										<FiTrash2
 											size={20}
-											color="#f08080"
+											color="#C724B1"
 										></FiTrash2>
 									</button>
 									<Link to={'/registro?id=' + registro._id}>
@@ -151,7 +151,7 @@ class Home extends Component {
 										>
 											<FiEdit
 												size={20}
-												color="#90ee90"
+												color="#C724B1"
 											></FiEdit>
 										</button>
 									</Link>
