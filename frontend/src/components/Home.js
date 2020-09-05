@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import { Link } from 'react-router-dom';
-import { FiTrash2, FiEdit } from 'react-icons/fi';
-const moment = require('moment');
-
+import TableRegister from './TableRegister';
 const axios = require('axios');
 
 class Home extends Component {
@@ -49,118 +47,18 @@ class Home extends Component {
 	render() {
 		return (
 			<div className="registros_container">
-				<h4>Gastos:</h4>
-
-				<table>
-					<thead>
-						<tr>
-							<th>Tipo</th>
-							<th>Descrição</th>
-							<th>Data</th>
-							<th>Valor</th>
-							<th>Opções:</th>
-						</tr>
-					</thead>
-					<tbody>
-						{this.state.registros.map((registro) => (
-							<tr key={registro._id}>
-								<td>{registro.tipo}</td>
-								<td>{registro.descricao}</td>
-								<td>
-									{moment(registro.data).format('DD-MM-YYYY')}
-								</td>
-								<td>
-									{Intl.NumberFormat('pt-BR', {
-										style: 'currency',
-										currency: 'BRL',
-									}).format(registro.valor)}
-								</td>
-								<td>
-									<button
-										className="trashButton"
-										onClick={() =>
-											this.handleDeleteRegistro(registro)
-										}
-										type="button"
-									>
-										<FiTrash2
-											size={20}
-											color="#C724B1"
-										></FiTrash2>
-									</button>
-									<Link to={'/registro?id=' + registro._id}>
-										<button
-											className="trashButton"
-											type="button"
-										>
-											<FiEdit
-												size={20}
-												color="#C724B1"
-											></FiEdit>
-										</button>
-									</Link>
-								</td>
-							</tr>
-						))}
-					</tbody>
-				</table>
-
-				<h4>Renda:</h4>
-
-				<table>
-					<thead>
-						<tr>
-							<th>Tipo</th>
-							<th>Descrição</th>
-							<th>Data</th>
-							<th>Valor</th>
-							<th>Opções:</th>
-						</tr>
-					</thead>
-					<tbody>
-						{this.state.renda.map((registro) => (
-							<tr key={registro._id}>
-								<td>{registro.tipo}</td>
-								<td>{registro.descricao}</td>
-								<td>
-									{moment(registro.data).format('DD-MM-YYYY')}
-								</td>
-								<td>
-									{Intl.NumberFormat('pt-BR', {
-										style: 'currency',
-										currency: 'BRL',
-									}).format(registro.valor)}
-								</td>
-								<td>
-									<button
-										className="trashButton"
-										onClick={() =>
-											this.handleDeleteRegistro(registro)
-										}
-										type="button"
-									>
-										<FiTrash2
-											size={20}
-											color="#C724B1"
-										></FiTrash2>
-									</button>
-									<Link to={'/registro?id=' + registro._id}>
-										<button
-											className="trashButton"
-											type="button"
-										>
-											<FiEdit
-												size={20}
-												color="#C724B1"
-											></FiEdit>
-										</button>
-									</Link>
-								</td>
-							</tr>
-						))}
-					</tbody>
-				</table>
-
+				{this.state.registros && (
+					<TableRegister
+						name="Gastos"
+						registros={this.state.registros}
+					/>
+				)}
+				{this.state.renda && (
+					<TableRegister
+						name="Fontes de Renda"
+						registros={this.state.renda}
+					/>
+				)}
 				<Link className="button" to="/registro">
 					Cadastrar Novo Registro
 				</Link>
