@@ -32,4 +32,31 @@ module.exports = (app) => {
 			}
 		);
 	});
+
+	app.get('/api/total_receita_gasto', (req, res) => {
+		const user_id = req.user.id;
+		Gasto.aggregate(
+			[
+				{
+					$match: {
+						data: {
+							$gte: startOfMonth(new Date()),
+							$lte: endOfMonth(new Date()),
+						},
+						_user: objectId(user_id),
+					},
+				},
+				{
+					$group: {
+						_id: '$isRenda',
+						totalAmount: { $sum: '$valor' },
+					},
+				},
+			],
+
+			function (err, registros) {
+				res.send(registros);
+			}
+		);
+	});
 };
