@@ -1,4 +1,5 @@
 const moongose = require('mongoose');
+const { format, subMonths } = require('date-fns');
 const endOfMonth = require('date-fns/endOfMonth');
 const startOfMonth = require('date-fns/startOfMonth');
 const Gasto = moongose.model('gasto');
@@ -24,8 +25,11 @@ module.exports = (app) => {
 			{
 				_user: user_id,
 				data: {
-					$gte: startOfMonth(new Date()),
-					$lte: endOfMonth(new Date()),
+					$gte: format(
+						startOfMonth(subMonths(new Date(), 0)),
+						'yyyy-MM-dd'
+					),
+					$lte: endOfMonth(subMonths(new Date(), 0)),
 				},
 				isRenda: false,
 			},
@@ -41,8 +45,11 @@ module.exports = (app) => {
 			{
 				_user: user_id,
 				data: {
-					$gte: startOfMonth(new Date()),
-					$lte: endOfMonth(new Date()),
+					$gte: format(
+						startOfMonth(subMonths(new Date(), 0)),
+						'yyyy-MM-dd'
+					),
+					$lte: endOfMonth(subMonths(new Date(), 0)),
 				},
 				isRenda: true,
 			},
