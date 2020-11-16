@@ -1,10 +1,10 @@
 #header {
-	background-color: blueviolet;
+	background-color: navy;
 	padding-left: 5px;
 	padding-right: 5px;
 }
 .page-footer {
-	background-color: blueviolet;
+	background-color: navy;
 }
 
 .page-footer a {
@@ -13,7 +13,7 @@
 }
 
 #Carousel-2 li {
-	background-color: blueviolet;
+	background-color: navy;
 }
 
 .defaultForm {
@@ -54,7 +54,7 @@
 	padding-right: 5px;
 }
 .card-content {
-	background-color: blueviolet;
+	background-color: navy;
 }
 .registros_container .button {
 	width: 50%;
@@ -67,7 +67,7 @@
 .button {
 	width: 100%;
 	height: 60px;
-	background: blueviolet;
+	background: navy;
 	border: 0;
 	border-radius: 8px;
 	color: #fff;
@@ -79,6 +79,10 @@
 	font-size: 18px;
 	line-height: 60px;
 	transition: filter 0.2s;
+}
+
+.Fi-button {
+	color: navy;
 }
 
 .button:hover {

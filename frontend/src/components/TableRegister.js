@@ -85,10 +85,7 @@ class TableRegister extends Component {
 										}
 										type="button"
 									>
-										<FiTrash2
-											size={20}
-											color="#C724B1"
-										></FiTrash2>
+										<FiTrash2 className="Fi-button"></FiTrash2>
 									</button>
 									<Link to={'/registro?id=' + registro._id}>
 										<button
@@ -96,8 +93,7 @@ class TableRegister extends Component {
 											type="button"
 										>
 											<FiEdit
-												size={20}
-												color="#C724B1"
+												className= "Fi-button"
 											></FiEdit>
 										</button>
 									</Link>
