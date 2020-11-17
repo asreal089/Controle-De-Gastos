@@ -10,17 +10,19 @@ class Home extends Component {
 		if (!this.props.auth) {
 			this.props.history.push(`/`);
 		}
-		this.state={
-			month: 0,
-		};
+		
 	}
+	
+	state={
+		month: 0,
+	};
 
 	render() {
 		return (
 			<div className="registros_container">
-				<GraficoPizza month={2} />
-				<TableRegister tipo_registro="Gastos" month={2} />
-				<TableRegister tipo_registro="Fontes de Renda" month={2} />
+				<GraficoPizza month={this.state.month} />
+				<TableRegister tipo_registro="Gastos" month={this.state.month} />
+				<TableRegister tipo_registro="Fontes de Renda" month={this.state.month} />
 
 				<Link className="button" to="/registro">
 					Cadastrar Novo Registro
