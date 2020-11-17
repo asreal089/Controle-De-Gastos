@@ -5,7 +5,7 @@ const startOfMonth = require('date-fns/startOfMonth');
 const Gasto = moongose.model('gasto');
 
 module.exports = (app) => {
-	app.get('/api/gastos/:id', (req, res) => {
+	app.get('/api/gasto/:id', (req, res) => {
 		const user_id = req.user.id;
 		const gasto_id = req.params.id;
 		Gasto.findOne(
@@ -19,17 +19,18 @@ module.exports = (app) => {
 		);
 	});
 
-	app.get('/api/gastos', (req, res) => {
+	app.get('/api/gastos/:mes', (req, res) => {
 		const user_id = req.user.id;
+		const mes_count = req.params.mes;
 		Gasto.find(
 			{
 				_user: user_id,
 				data: {
 					$gte: format(
-						startOfMonth(subMonths(new Date(), 0)),
+						startOfMonth(subMonths(new Date(), mes_count)),
 						'yyyy-MM-dd'
 					),
-					$lte: endOfMonth(subMonths(new Date(), 0)),
+					$lte: endOfMonth(subMonths(new Date(), mes_count)),
 				},
 				isRenda: false,
 			},
@@ -39,17 +40,18 @@ module.exports = (app) => {
 		);
 	});
 
-	app.get('/api/renda', (req, res) => {
+	app.get('/api/renda/:mes', (req, res) => {
 		const user_id = req.user.id;
+		const mes_count = req.params.mes;
 		Gasto.find(
 			{
 				_user: user_id,
 				data: {
 					$gte: format(
-						startOfMonth(subMonths(new Date(), 0)),
+						startOfMonth(subMonths(new Date(), mes_count)),
 						'yyyy-MM-dd'
 					),
-					$lte: endOfMonth(subMonths(new Date(), 0)),
+					$lte: endOfMonth(subMonths(new Date(), mes_count)),
 				},
 				isRenda: true,
 			},

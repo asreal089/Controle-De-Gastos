@@ -1,19 +1,21 @@
 const moongose = require('mongoose');
 const endOfMonth = require('date-fns/endOfMonth');
+const { subMonths } = require('date-fns');
 const startOfMonth = require('date-fns/startOfMonth');
 const Gasto = moongose.model('gasto');
 const objectId = moongose.Types.ObjectId;
 
 module.exports = (app) => {
-	app.get('/api/total_gasto', (req, res) => {
+	app.get('/api/total_gasto/:mes', (req, res) => {
 		const user_id = req.user.id;
+		const mes_count = req.params.mes;
 		Gasto.aggregate(
 			[
 				{
 					$match: {
 						data: {
-							$gte: startOfMonth(new Date()),
-							$lte: endOfMonth(new Date()),
+							$gte: startOfMonth(subMonths(new Date(), mes_count)),
+							$lte: endOfMonth(subMonths(new Date(), mes_count)),
 						},
 						isRenda: false,
 						_user: objectId(user_id),
@@ -33,15 +35,16 @@ module.exports = (app) => {
 		);
 	});
 
-	app.get('/api/total_receita_gasto', (req, res) => {
+	app.get('/api/total_receita_gasto/:mes', (req, res) => {
 		const user_id = req.user.id;
+		const mes_count = req.params.mes;
 		Gasto.aggregate(
 			[
 				{
 					$match: {
 						data: {
-							$gte: startOfMonth(new Date()),
-							$lte: endOfMonth(new Date()),
+							$gte: startOfMonth(subMonths(new Date(), mes_count)),
+							$lte: endOfMonth(subMonths(new Date(), mes_count)),
 						},
 						_user: objectId(user_id),
 					},

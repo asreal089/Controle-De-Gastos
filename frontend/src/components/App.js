@@ -9,7 +9,6 @@ import Footer from './Footer';
 import Home from './Home';
 import NovoRegistro from './NovoRegistro';
 import Lading from './Landing';
-import Dashboard from './Dashboard';
 
 class App extends Component {
 	componentDidMount() {
@@ -23,11 +22,6 @@ class App extends Component {
 					<div>
 						<Header />
 						<Route exact={true} path="/" component={Lading} />
-						<Route
-							exact={true}
-							path="/home"
-							component={Dashboard}
-						/>
 						<Route exact={true} path="/home" component={Home} />
 						<Route
 							exact={true}

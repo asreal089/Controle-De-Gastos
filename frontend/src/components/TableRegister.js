@@ -16,12 +16,12 @@ class TableRegister extends Component {
 
 	componentDidMount() {
 		if (this.props.tipo_registro === 'Gastos') {
-			axios.get('api/gastos').then((res) => {
+			axios.get('api/gastos/'+this.props.month).then((res) => {
 				const registros = res.data;
 				this.setState({ registros });
 			});
 		} else {
-			axios.get('api/renda').then((res) => {
+			axios.get('api/renda/'+this.props.month).then((res) => {
 				const registros = res.data;
 				this.setState({ registros });
 			});

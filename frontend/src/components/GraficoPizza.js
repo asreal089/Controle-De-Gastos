@@ -6,7 +6,7 @@ import Highcharts from 'highcharts';
 
 const axios = require('axios');
 
-class Dashboard extends Component {
+class GraficoPizza extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -15,11 +15,9 @@ class Dashboard extends Component {
 	}
 
 	componentDidMount() {
-		if (!this.props.auth) {
-			this.props.history.push(`/`);
-		}
+		
 
-		axios.get('api/total_gasto').then((res) => {
+		axios.get('api/total_gasto/'+this.props.month).then((res) => {
 			const totalTipo = [];
 			res.data.forEach((element) => {
 				var temp = { name: element._id, y: element.totalAmount };
@@ -83,4 +81,4 @@ function mapStateToProps({ auth }) {
 	return { auth };
 }
 
-export default connect(mapStateToProps, actions)(Dashboard);
+export default connect(mapStateToProps, actions)(GraficoPizza);

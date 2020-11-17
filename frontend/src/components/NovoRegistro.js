@@ -19,7 +19,7 @@ class NovoRegistro extends Component {
 	}
 
 	myEditHandler = async (id) => {
-		axios.get('api/gastos/' + id.id).then((res) => {
+		axios.get('api/gasto/' + id.id).then((res) => {
 			const registro = res.data;
 			this.setState({
 				id: id.id,
