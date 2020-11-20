@@ -18,8 +18,7 @@ class Home extends Component {
 		month: 0
 	};
 
-	returnMonth(month){
-		let mes = month % 12;
+	returnMonth(mes){
 		if (mes === 0) {
 		  return("Janeiro");
 		} if (mes === 1) {

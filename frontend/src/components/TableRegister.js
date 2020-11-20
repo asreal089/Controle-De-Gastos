@@ -10,7 +10,7 @@ class TableRegister extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			month: this.props.month,
+			month: 0,
 			registros: [],
 		};
 	}
@@ -18,6 +18,10 @@ class TableRegister extends Component {
 	
 
 	componentDidMount() {
+		this.setRegistros();
+	}
+
+	setRegistros(){
 		if (this.props.tipo_registro === 'Gastos') {
 			axios.get('api/gastos/'+this.state.month).then((res) => {
 				const registros = res.data;
@@ -29,6 +33,11 @@ class TableRegister extends Component {
 				this.setState({ registros });
 			});
 		}
+	}
+
+	componentWillReceiveProps(){
+		this.setState({month: this.props.month});
+		this.setRegistros();
 	}
 
 	handleDeleteRegistro = async (reg) => {
