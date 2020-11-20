@@ -10,18 +10,21 @@ class TableRegister extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			month: this.props.month,
 			registros: [],
 		};
 	}
 
+	
+
 	componentDidMount() {
 		if (this.props.tipo_registro === 'Gastos') {
-			axios.get('api/gastos/'+this.props.month).then((res) => {
+			axios.get('api/gastos/'+this.state.month).then((res) => {
 				const registros = res.data;
 				this.setState({ registros });
 			});
 		} else {
-			axios.get('api/renda/'+this.props.month).then((res) => {
+			axios.get('api/renda/'+this.state.month).then((res) => {
 				const registros = res.data;
 				this.setState({ registros });
 			});
@@ -35,12 +38,12 @@ class TableRegister extends Component {
 			data: reg,
 		}).then((res) => {
 			if (this.props.tipo_registro === 'Gastos') {
-				axios.get('api/gastos/'+this.props.month).then((res) => {
+				axios.get('api/gastos/'+this.state.month).then((res) => {
 					const registros = res.data;
 					this.setState({ registros });
 				});
 			} else {
-				axios.get('api/renda/'+this.props.month).then((res) => {
+				axios.get('api/renda/'+this.state.month).then((res) => {
 					const registros = res.data;
 					this.setState({ registros });
 				});
